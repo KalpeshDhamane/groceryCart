@@ -17,30 +17,29 @@ public class HealtyBurger extends Hamburgers {
 
     public void priceCalculation() {
         int selectedMenuOption = 0;
-        selectedMenuOption = displayMenu();
-        if (selectedMenuOption != 0) {
-            calculateAddOn(selectedMenuOption);
-        }
-        scanner.nextLine();
-        System.out.println("Do you like to add another add on");
-        if (scanner.nextLine().equalsIgnoreCase("yes") ? true : false) {
-            selectedMenuOption = displayMenu();
-            if (selectedMenuOption != 0) {
-                calculateAddOn(selectedMenuOption);
+        boolean addOnRequirement = true;
+        while (addOnRequirement) {
+            System.out.println("Would you like add on for extra refreshment?");
+            addOnRequirement = scanner.nextLine().equalsIgnoreCase("yes") ? true : false;
+            if (addOnRequirement) {
+                selectedMenuOption = displayMenu();
+                if (selectedMenuOption != 0) {
+                    calculateAddOn(selectedMenuOption);
+                }
+                scanner.nextLine();
             }
         }
         System.out.println("Your Final price is " + this.totalHealtyBurgerPrice);
     }
 
     public int displayMenu() {
-        System.out.println("Thanks for choosing healty burger " +
-                "\nWould you like any add one from following menu " +
-                "\n 1. Tomato " +
-                "\n 2. Cheese " +
-                "\n 3. Carrot" +
-                "\n 4. Onion " +
-                "\n 5. Corn " +
-                "\n 6. Capsicum");
+        System.out.println(
+                        "1. Tomato " +
+                        "\n 2. Cheese " +
+                        "\n 3. Carrot" +
+                        "\n 4. Onion " +
+                        "\n 5. Corn " +
+                        "\n 6. Capsicum");
         int selection = scanner.nextInt();
         if (selection == this.previousSelection) {
             System.out.println("Option is already selected.");
